@@ -1,0 +1,25 @@
+﻿<Window x:Class="MyVegas.settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyVegas"
+        mc:Ignorable="d"
+        Title="settings" Height="332" Width="475" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MinWidth="475" MaxWidth="475" MinHeight="332" MaxHeight="332">
+    <Grid>
+        <Slider x:Name="sldrThreashold" HorizontalAlignment="Left" Margin="103,40,0,0" VerticalAlignment="Top" Width="305" Maximum="100" ValueChanged="threashold_change" SmallChange="1"/>
+        <Button x:Name="btnClose" Content="Save" HorizontalAlignment="Center" Margin="0,253,0,0" VerticalAlignment="Top" Height="27" Width="71" Click="btnClose_Click"/>
+        <Label Content="Threashold %" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="27" Width="88"/>
+        <Label x:Name="lblThreashold" Content="0%" HorizontalAlignment="Left" Margin="413,36,0,0" VerticalAlignment="Top"/>
+        <Slider x:Name="sdlrScreenshot" HorizontalAlignment="Left" Margin="129,100,0,0" VerticalAlignment="Top" Width="254" Minimum="3" Maximum="30" ValueChanged="screenshot_change" SmallChange="1"/>
+        <Label Content="Screenshot Timer" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top" Height="26" Width="107"/>
+        <Label x:Name="lblScreenshot" Content="0 seconds" HorizontalAlignment="Left" Margin="388,96,0,0" VerticalAlignment="Top" Width="77"/>
+        <Slider x:Name="sdlrDeletion" HorizontalAlignment="Left" Margin="129,144,0,0" VerticalAlignment="Top" Width="254" Minimum="3" Maximum="30" ValueChanged="deletion_change" SmallChange="1"/>
+        <Label Content="Screenshot Deletion" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Height="26" Width="119"/>
+        <Label x:Name="lblDeletion" Content="0 minutes" HorizontalAlignment="Left" Margin="388,140,0,0" VerticalAlignment="Top" Width="77"/>
+        <Slider x:Name="sdlrStall" HorizontalAlignment="Left" Margin="82,197,0,0" VerticalAlignment="Top" Width="301" Minimum="30" Maximum="300" ValueChanged="stall_change" SmallChange="1"/>
+        <Label Content="Stall Timer" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Height="26" Width="67"/>
+        <Label x:Name="lblStall" Content="0 seconds" HorizontalAlignment="Left" Margin="388,193,0,0" VerticalAlignment="Top" Width="77"/>
+
+    </Grid>
+</Window>
