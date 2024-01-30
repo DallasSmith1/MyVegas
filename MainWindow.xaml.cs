@@ -45,6 +45,9 @@ namespace MyVegas
         private bool objectWasFound = false;
         private DateTime SCREENSHOT_DELETION_TIMER;
         private int deletion_timer = 10;
+        private string LastClick = "";
+        private int LastClickCount = 0;
+        private int DUPLICATE_CLICK_COUNT = 3;
 
         #region BGW pass through variables
         int numOfObjects = 0;
@@ -116,7 +119,7 @@ namespace MyVegas
                     objectWasFound = false;
                     foreach (Object obj in screenshot.objects)
                     {
-                        if (obj.Name == "Close Ad" || obj.Name == "Skip Ad")
+                        if (obj.Name == "Retry" || obj.Name == "Collect")
                         {
 
                             if (obj.Probability > Object.Threashold)
@@ -128,10 +131,19 @@ namespace MyVegas
                                 SetCursor(obj.GetCenterX(), obj.GetCenterY());
                                 DoMouseClick();
                                 LAST_CLICK = DateTime.Now;
+                                if (LastClick == obj.Name)
+                                {
+                                    LastClickCount++;
+                                }
+                                else
+                                {
+                                    LastClick = obj.Name;
+                                    LastClickCount = 0;
+                                }
                                 break;
                             }
                         }
-                        else if (obj.Name == "Collect")
+                        else if (obj.Name == "Close Store")
                         {
 
                             if (obj.Probability > Object.Threashold)
@@ -143,6 +155,39 @@ namespace MyVegas
                                 SetCursor(obj.GetCenterX(), obj.GetCenterY());
                                 DoMouseClick();
                                 LAST_CLICK = DateTime.Now;
+                                if (LastClick == obj.Name)
+                                {
+                                    LastClickCount++;
+                                }
+                                else
+                                {
+                                    LastClick = obj.Name;
+                                    LastClickCount = 0;
+                                }
+                                break;
+                            }
+                        }
+                        else if (obj.Name == "Quit")
+                        {
+
+                            if (obj.Probability > Object.Threashold)
+                            {
+                                objectWasFound = true;
+                                objectFound = obj.Name;
+                                prob = obj.Probability;
+                                backgroundWorker.ReportProgress(3);
+                                SetCursor(obj.GetCenterX(), obj.GetCenterY());
+                                DoMouseClick();
+                                LAST_CLICK = DateTime.Now;
+                                if (LastClick == obj.Name)
+                                {
+                                    LastClickCount++;
+                                }
+                                else
+                                {
+                                    LastClick = obj.Name;
+                                    LastClickCount = 0;
+                                }
                                 break;
                             }
                         }
@@ -158,6 +203,15 @@ namespace MyVegas
                             SetCursor(screenshot.objects[0].GetCenterX(), screenshot.objects[0].GetCenterY());
                             DoMouseClick();
                             LAST_CLICK = DateTime.Now;
+                            if (LastClick == screenshot.objects[0].Name)
+                            {
+                                LastClickCount++;
+                            }
+                            else
+                            {
+                                LastClick = screenshot.objects[0].Name;
+                                LastClickCount = 0;
+                            }
                         }
                         else
                         {
@@ -177,6 +231,12 @@ namespace MyVegas
                         backgroundWorker.ReportProgress(6);
                         FixStall();
                     }
+                }
+
+                if (LastClickCount == DUPLICATE_CLICK_COUNT)
+                {
+                    backgroundWorker.ReportProgress(6);
+                    FixStall();
                 }
                 backgroundWorker.ReportProgress(5);
                 Thread.Sleep(TIMER * 500);
@@ -277,6 +337,8 @@ namespace MyVegas
             DoMouseClick();
             Thread.Sleep(1000);
             LAST_CLICK = DateTime.Now;
+            LastClick = string.Empty;
+            LastClickCount = 0;
         }
 
 

@@ -14,7 +14,7 @@ namespace MyVegas
     internal class Screenshot
     {
         #region Custom Vision
-        private static string predictionEndpoint = "https://myvegascomputervision-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/c50f50b3-23df-4196-a783-84eeb1816eaa/detect/iterations/Version%204/image";
+        private static string predictionEndpoint = "https://myvegascomputervision-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/c50f50b3-23df-4196-a783-84eeb1816eaa/detect/iterations/Version%207/image";
         private static string predictionKey = "bc98a39197a64edfbb0c4e24b51590c2";
         #endregion
 
